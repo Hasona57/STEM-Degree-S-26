@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEM Schools Official Updated Results 2026 | Full Rankings & Analytics</title>
-  <meta name="description" content="Explore official updated results and complete national rankings for all STEM School students in Egypt for 2026. Interactive search, school filters, division rankings, and grade details.">
+  <title>STEM Schools Official Updated Results 2026 | Full Rankings, Tiers & Flexible %</title>
+  <meta name="description" content="Explore official updated results, complete national rankings, Grade Tiers (الشرايح), Flexible Percentage (النسبة المرنة x1.25), and Attempt Comparison (الفرصة الأولى vs الفرصة الثانية بعد التحسين) for all 1,943 STEM School students in Egypt for 2026.">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,11 +24,11 @@
         <div class="brand-logo">🧬</div>
         <div class="brand-title">
           <h1>STEM Schools Official Results 2026</h1>
-          <p>نتائج مدارس المتفوقين في العلوم والتكنولوجيا - الترتيب والنتائج المحدثة الرسمية</p>
+          <p>نتائج مدارس المتفوقين الرسمية المحدثة - ترتيب الشرايح والنسبة المرنة (الفرصة الأولى والفرصة الثانية بعد التحسين)</p>
         </div>
       </div>
       <div class="header-badges">
-        <div class="badge-live">Official Ministry Data (Updated 2026)</div>
+        <div class="badge-live">Updated Ministry Portal Data (2026)</div>
       </div>
     </header>
 
@@ -46,6 +46,13 @@
         <div class="stat-info">
           <h3 id="statPerfectGpa">0</h3>
           <p>Perfect 4.00 GPA Performers</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon tiers">📊</div>
+        <div class="stat-info">
+          <h3 id="statTiersCount">100</h3>
+          <p>Grade Tiers (الشرايح)</p>
         </div>
       </div>
       <div class="stat-card">
@@ -68,7 +75,7 @@
     <section class="podium-section" id="podiumSection">
       <div class="section-header">
         <div class="section-title">
-          <span>🌟</span> National Top Performers Showcase
+          <span>🌟</span> National Top Performers (الشريحة الأولى - 4.00 GPA)
         </div>
       </div>
       <div class="top-podium" id="topPodiumGrid">
@@ -81,7 +88,7 @@
       <div class="toolbar-grid">
         <div class="filter-group">
           <label for="searchInput">Search Student</label>
-          <input type="text" id="searchInput" class="input-control" placeholder="Search by English name, Arabic name, seat number..." autocomplete="off">
+          <input type="text" id="searchInput" class="input-control" placeholder="Search by name, seat number..." autocomplete="off">
         </div>
 
         <div class="filter-group">
@@ -92,13 +99,9 @@
         </div>
 
         <div class="filter-group">
-          <label for="tierFilter">GPA Performance Tier</label>
+          <label for="tierFilter">Grade Tier / Band (الشريحة)</label>
           <select id="tierFilter" class="input-control">
-            <option value="all">All GPA Tiers</option>
-            <option value="4.00">4.00 Perfect Honors</option>
-            <option value="3.80-3.99">3.80 - 3.99 High Honors</option>
-            <option value="3.50-3.79">3.50 - 3.79 Honors</option>
-            <option value="under-3.50">Under 3.50</option>
+            <option value="all">All Tiers (جميع الشرايح 1 - 100)</option>
           </select>
         </div>
 
@@ -107,9 +110,10 @@
           <select id="sortSelect" class="input-control">
             <option value="branch_rank">Branch Rank (Science / Math Rank)</option>
             <option value="overall_rank">National Overall Rank (All 1,943)</option>
+            <option value="tier_asc">Tier / Band (الشريحة 1 → 100)</option>
+            <option value="flex_desc">Flexible Percentage (النسبة المرنة x1.25)</option>
             <option value="school_rank">School Rank (Rank in School)</option>
             <option value="gpa_desc">Sort by GPA & Percentage (Highest First)</option>
-            <option value="gpa_asc">Sort by GPA & Percentage (Lowest First)</option>
             <option value="seat_asc">Seat Number (Ascending 2000000+)</option>
             <option value="seat_desc">Seat Number (Descending)</option>
             <option value="name_asc">Student Name (Alphabetical A-Z)</option>
@@ -124,8 +128,10 @@
           <button class="pill-btn" data-division="math">Math (رياضيات - 884)</button>
         </div>
 
-        <div class="view-options">
-          <span style="font-size: 13px; color: var(--text-muted); align-self: center;">Click any student row to view full official grade card transcript</span>
+        <div class="division-pills" style="max-width: 480px;">
+          <button class="pill-btn active" id="attemptBtnNew" data-attempt="new">الفرصة الثانية (بعد التحسين)</button>
+          <button class="pill-btn" id="attemptBtnOld" data-attempt="old">الفرصة الأولى (قبل التحسين)</button>
+          <button class="pill-btn" id="attemptBtnBoth" data-attempt="both">مقارنة الفرصتين</button>
         </div>
       </div>
     </section>
@@ -136,12 +142,13 @@
         <thead>
           <tr>
             <th>Rank</th>
+            <th>Tier (الشريحة)</th>
             <th>Student Name</th>
             <th>Seat No</th>
             <th>Division</th>
-            <th>STEM Institution</th>
-            <th>GPA / Score</th>
-            <th>Status</th>
+            <th>STEM School</th>
+            <th>GPA / Percentage</th>
+            <th>Flexible % (النسبة المرنة x1.25)</th>
             <th>Action</th>
           </tr>
         </thead>
