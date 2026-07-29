@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STEM Schools Official Updated Results 2026 | Full Rankings, Tiers & Flexible %</title>
-  <meta name="description" content="Explore official updated results, complete national rankings, Grade Tiers (الشرايح), Flexible Percentage (النسبة المرنة x1.25), and Attempt Comparison (الفرصة الأولى vs الفرصة الثانية بعد التحسين) for all 1,943 STEM School students in Egypt for 2026.">
+  <title>STEM Schools Official Updated Results 2026 | Full Rankings, Tiers, Flexible % & Universal Sorting</title>
+  <meta name="description" content="Explore official updated results, complete national rankings, Grade Tiers (الشرايح), Flexible Percentage (النسبة المرنة x1.25), Attempt Comparison (الفرصة الأولى vs الفرصة الثانية بعد التحسين), and universal multi-attribute sorting for all 1,943 STEM School students in Egypt for 2026.">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,26 @@
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    .results-table th[data-sort] {
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .results-table th[data-sort]:hover {
+      background: rgba(99, 102, 241, 0.2);
+      color: #ffffff;
+    }
+    .results-table th.sorted {
+      color: #a5b4fc;
+      background: rgba(99, 102, 241, 0.25);
+    }
+    .sort-arrow {
+      font-size: 11px;
+      opacity: 0.7;
+    }
+  </style>
 </head>
 <body>
 
@@ -24,7 +44,7 @@
         <div class="brand-logo">🧬</div>
         <div class="brand-title">
           <h1>STEM Schools Official Results 2026</h1>
-          <p>نتائج مدارس المتفوقين الرسمية المحدثة - ترتيب الشرايح والنسبة المرنة (الفرصة الأولى والفرصة الثانية بعد التحسين)</p>
+          <p>نتائج مدارس المتفوقين الرسمية المحدثة - ترتيب الشرايح والنسبة المرنة والفرز الشامل لجميع المواد</p>
         </div>
       </div>
       <div class="header-badges">
@@ -106,14 +126,21 @@
         </div>
 
         <div class="filter-group">
-          <label for="sortSelect">Full Arrangement / Ranking Mode</label>
+          <label for="sortSelect">Full Arrangement / Sorting Mode (الفرز الشامل)</label>
           <select id="sortSelect" class="input-control">
             <option value="branch_rank">Branch Rank (Science / Math Rank)</option>
             <option value="overall_rank">National Overall Rank (All 1,943)</option>
             <option value="tier_asc">Tier / Band (الشريحة 1 → 100)</option>
             <option value="flex_desc">Flexible Percentage (النسبة المرنة x1.25)</option>
             <option value="school_rank">School Rank (Rank in School)</option>
-            <option value="gpa_desc">Sort by GPA & Percentage (Highest First)</option>
+            <option value="gpa_desc">Total GPA & Score (Highest First)</option>
+            <option value="gpa_diff">GPA Improvement (+التحسين)</option>
+            <option value="physics">Physics Grade (الفيزياء)</option>
+            <option value="chemistry">Chemistry Grade (الكيمياء)</option>
+            <option value="biology_geology">Biology / Geology (أحياء / جيولوجيا)</option>
+            <option value="pure_math">Pure Math / Applied Math (رياضة)</option>
+            <option value="english">English Grade (اللغة الإنجليزية)</option>
+            <option value="arabic">Arabic Grade (اللغة العربية)</option>
             <option value="seat_asc">Seat Number (Ascending 2000000+)</option>
             <option value="seat_desc">Seat Number (Descending)</option>
             <option value="name_asc">Student Name (Alphabetical A-Z)</option>
@@ -141,14 +168,14 @@
       <table class="results-table">
         <thead>
           <tr>
-            <th>Rank</th>
-            <th>Tier (الشريحة)</th>
-            <th>Student Name</th>
-            <th>Seat No</th>
-            <th>Division</th>
-            <th>STEM School</th>
-            <th>GPA / Percentage</th>
-            <th>Flexible % (النسبة المرنة x1.25)</th>
+            <th data-sort="rank_branch" onclick="handleHeaderSort('rank_branch')">Rank <span class="sort-arrow">↕</span></th>
+            <th data-sort="tier" onclick="handleHeaderSort('tier')">Tier (الشريحة) <span class="sort-arrow">↕</span></th>
+            <th data-sort="name" onclick="handleHeaderSort('name')">Student Name <span class="sort-arrow">↕</span></th>
+            <th data-sort="seat" onclick="handleHeaderSort('seat')">Seat No <span class="sort-arrow">↕</span></th>
+            <th data-sort="division" onclick="handleHeaderSort('division')">Division <span class="sort-arrow">↕</span></th>
+            <th data-sort="school" onclick="handleHeaderSort('school')">STEM School <span class="sort-arrow">↕</span></th>
+            <th data-sort="gpa" onclick="handleHeaderSort('gpa')">GPA / Score <span class="sort-arrow">↕</span></th>
+            <th data-sort="flex_pct" onclick="handleHeaderSort('flex_pct')">Flexible % (النسبة المرنة) <span class="sort-arrow">↕</span></th>
             <th>Action</th>
           </tr>
         </thead>
